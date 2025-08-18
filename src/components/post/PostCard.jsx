@@ -14,10 +14,10 @@ export default function PostCard() {
                 </div>
                 <span className="text-sm text-text/60">20-07-2025</span>
             </div>
-            <div className="w-full ">
+            <div className="w-full overflow-hidden ">
                 <img
                 src={piscok}
-                className="w-full h-48 sm:h-60 rounded object-cover"
+                className="w-full h-48 sm:h-60 rounded object-cover transform hover:scale-105   duration-300"
                 alt=""
                 />
             </div>
