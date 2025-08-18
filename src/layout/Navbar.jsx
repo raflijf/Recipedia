@@ -24,7 +24,7 @@ export default function Navbar() {
     })
     
     return (
-        <nav className='w-full h-15 lg:h-20 '>
+        <nav className='w-full h-15 lg:h-20 z-10 '>
             <div className='fixed w-full'>
                 <div className={clsx('bg-light duration-[1000ms] h-15 lg:h-20 grid place-items-center  w-full ')} ref={shadowRef}  >
                     <div className='w-[90%] lg:w-[95%] flex items-center justify-between '>
