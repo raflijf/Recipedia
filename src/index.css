@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary :#06D954;
+    --color-primaryHover :#059845 ;
+
+    --color-secondry :#10B981;
+    --color-secondryHover : #0E9F6E;
+
+    --color-thirdty :#1F2937;
+
+    --color-accent :#FAA615;
+    --color-accentHover :#E09610;
+    
+    --color-light :#F2F2F2;
+    --color-text :#1F2937;
+
+    --font-primary :'Poppins', sans-serif ;
+
+}
+
