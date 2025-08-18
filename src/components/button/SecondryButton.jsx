@@ -11,5 +11,5 @@ export default function SecondryButton({size = 'medium', color = 'primary', chil
         secondry : 'border-secondry text-secondry hover:bg-secondry  hover:text-white',
         accent : 'border-accent text-accent hover:bg-accent  hover:text-white'
     }
-    return <button className={clsx(sizeClasses[size], colorClasses[color], 'border-2 rounded duration-200 font-semibold')}>{children}</button>
+    return <button className={clsx(sizeClasses[size], colorClasses[color], 'border-2 rounded duration-200 font-semibold cursor-pointer')}>{children}</button>
 }
