@@ -27,15 +27,25 @@ export default function Recipes() {
     ]
 
     return (
-        <div className="grid grid-cols-[1fr_10fr_1fr] md:grid-cols-[minmax(0,1fr)_minmax(0,8fr)_minmax(0,1fr)] mt-15">
-            <div className="col-start-2 flex flex-wrap justify-center gap-4">
-                {categoriesRecipe.map((itm, idx) => (
-                    <RecipeCategoryCard 
-                        name={itm.name} 
-                        img={itm.img}
-                        key={idx}
-                    />
-                ))}
+        <div className="grid grid-cols-[1fr_10fr_1fr] md:grid-cols-[minmax(0,1fr)_minmax(0,8fr)_minmax(0,1fr)] mt-15 ">
+            <div className="col-start-2 ">
+                <div className="flex flex-wrap justify-center gap-4">
+                    {categoriesRecipe.map((itm, idx) => (
+                        <RecipeCategoryCard 
+                            name={itm.name} 
+                            img={itm.img}
+                            key={idx}
+                            id={idx}
+                            
+                        />
+                    ))}
+                </div>
+                <div>
+                    <div id="0" className="scroll-mt-27">
+                        <h1>Makanan Utama</h1>
+                    </div>
+                </div>
+                
             </div>
         </div>
     )
