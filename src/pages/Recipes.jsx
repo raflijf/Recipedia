@@ -42,7 +42,8 @@ export default function Recipes() {
                 </div>
                 <div>
                     <div id="0" className="scroll-mt-27">
-                        <h1>Makanan Utama</h1>
+                        <h2>Makanan Utama</h2>
+                        
                     </div>
                 </div>
                 
