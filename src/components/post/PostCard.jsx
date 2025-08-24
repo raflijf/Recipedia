@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import profil from '../../assets/billGates.jpeg'
 import piscok from '../../assets/piscok.png'
 
-import Like from '../../components/icon/Like'
+import Like from '../icon/Like'
 
 export default function PostCard() {
     return (
@@ -17,7 +17,7 @@ export default function PostCard() {
             <div className="w-full overflow-hidden ">
                 <img
                 src={piscok}
-                className="w-full h-48 sm:h-60 rounded object-cover transform hover:scale-105   duration-300"
+                className="w-full  rounded object-cover transform hover:scale-105   duration-300"
                 alt=""
                 />
             </div>

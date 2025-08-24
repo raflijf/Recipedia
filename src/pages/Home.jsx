@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet";
 
 import SearchBar from "../components/forms/SearchBar";
 import PrimaryButton from "../components/button/PrimaryButton";
-import PrimaryPostCard from "../components/post/PrimaryPostCard";
+import PostCard from "../components/post/PostCard";
 
 import logo from '../assets/Recipedia.png'
 import PostCardSkeleton from "../components/loading/PostCardSkeleton";
@@ -22,9 +22,9 @@ export default function Home() {
                         <PrimaryButton>Buat resep anda sendiri</PrimaryButton>                
                     </div>
                     <div className="grid  place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 gap-y-14 md">
-                    <PrimaryPostCard/>
-                    <PrimaryPostCard/>
-                    <PrimaryPostCard/>
+                    <PostCard/>
+                    <PostCard/>
+                    <PostCard/>
                         
                     </div>
                 
