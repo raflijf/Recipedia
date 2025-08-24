@@ -17,7 +17,7 @@ export default function PostCard() {
             <div className="w-full overflow-hidden ">
                 <img
                 src={piscok}
-                className="w-full h-48 sm:h-60 rounded object-cover transform hover:scale-105   duration-300"
+                className="w-full  rounded object-cover transform hover:scale-105   duration-300"
                 alt=""
                 />
             </div>
