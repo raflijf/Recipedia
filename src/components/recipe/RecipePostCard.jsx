@@ -1,24 +1,15 @@
-import piscok from "../../assets/piscok.png"
-import Like from "../icon/Like"
-import profil from "../../assets/billGates.jpeg"
+import lazyLoad from "../../assets/lazy_load_image.jpg"
 
-export default function SecondaryPostCard() {
+export default function SecondaryPostCard({title, img}) {
     return (
-        <div className="max-w-md w-full">
-            <div className="rounded-lg w-full overflow-hidden group relative ">
+        <div className="max-w-md w-full cursor-pointer ">
+            <div className="rounded-lg w-full  overflow-hidden group relative text-base ">
                 <img 
-                    src={piscok} 
-                    alt="piscook" 
-                    className="group-hover:scale-106 transform duration-300  cursor-pointer brightness-70 "
+                    src={img} 
+                    alt={title} 
+                    className="group-hover:scale-106 w-full aspect-[16/12.5] transform duration-300  brightness-70 "
                 />
-                <div className="absolute top-2 left-2  flex items-center gap-2.5">
-                    <img src={profil} alt="" className="rounded-full w-10 "/>
-                    <h2 className="font-semibold text-white text-lg">Emak seram</h2>
-                </div>
-            </div>
-            <div className="grid grid-cols-[1fr_auto] items-center">
-                <h2 className="font-bold text-text text-lg sm:text-xl md:text-2xl leading-snug ">Resep piscok ala papua selatan</h2>
-                <Like variant={'outline'} size="md"/>
+                <h2 className="absolute top-[45%]  text-center w-full   text-[1em] lg:text-[1.6em] font-semibold text-white">{title}</h2>
             </div>
         </div>
     )
