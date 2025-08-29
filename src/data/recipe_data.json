@@ -1,0 +1,68 @@
+{
+  
+  "Makanan Utama": {
+    "Nasi Padang" : "image/recipes/makananUtama/nasi_padang.jpg",
+    "Soto Ayam" :  "image/recipes/makananUtama/soto_ayam.jpg",
+    "Ayam Geprek" : "image/recipes/makananUtama/ayam_geprek.jpg",
+    "Ikan Bakar" : "image/recipes/makananUtama/ikan_bakar.jpg",
+    "Rendang" : "image/recipes/makananUtama/rendang.jpg"
+  },
+  "Makanan Penutup": {
+    "Es Krim" : "image/recipes/makananPenutup/esKrim.jpg",
+    "Puding" : "image/recipes/makananPenutup/pudding.jpg" ,
+    "Klepon" : "image/recipes/makananPenutup/klepon.jpg",
+    "Tiramisu" : "image/recipes/makananPenutup/tiramisu.jpg"
+  },
+  "Makanan Pembuka": {
+    "Lumpia Semarang" :"image/recipes/makananPembuka/lumpia.jpg", 
+    "Risol Mayo" :"image/recipes/makananPembuka/risol_mayo.jpg" ,
+    "Salad Buah" : "image/recipes/makananPembuka/salad_buah.jpg"
+  },
+  "Sarapan": {
+    "Bubur Ayam" : "image/recipes/sarapan/bubur_ayam.jpg",
+    "Lontong": "image/recipes/sarapan/lontong.jpg",
+    "nasi_uduk" : "image/recipes/sarapan/nasi_uduk.jpg"
+  },
+   "Cepat Saji": {
+    "Burger": "image/recipes/cepatSaji/burger.jpg",
+    "Pizza": "image/recipes/cepatSaji/pizza.jpg",
+    "Kentang Goreng": "image/recipes/cepatSaji/kentang_goreng.jpg",
+    "Hotdog": "image/recipes/cepatSaji/hotdog.jpg",
+    "Sandwich": "image/recipes/cepatSaji/sandwich.jpg"
+  },
+  "Cemilan": {
+    "Cireng": "image/recipes/cemilan/cireng.jpg",
+    "Bakso Goreng": "image/recipes/cemilan/bakso_goreng.jpg",
+    "Keripik Pisang": "image/recipes/cemilan/kripik_pisang.jpg",
+    "Donat": "image/recipes/cemilan/donat.jpg",
+    "Martabak Manis": "image/recipes/cemilan/martabak_manis.jpg",
+    "Siomay": "image/recipes/cemilan/siomay.jpg"
+  },
+  "Makanan Lokal": {
+    "Gudeg Jogja": "image/recipes/makananLokal/gudeg_jogja.jpg",
+    "Pempek Palembang": "image/recipes/makananLokal/pempek_palembang.jpg",
+    "Rawon Surabaya": "image/recipes/makananLokal/rawon_surabaya.jpg",
+    "Ayam Betutu Bali": "image/recipes/makananLokal/ayam_betutu_bali.jpg",
+    "Papeda Papua": "image/recipes/makananLokal/papeda_papua.jpg"
+  },
+  "Makanan Sehat": {
+    "Salad Sayur": "image/recipes/makananSehat/salad_sayur.jpg",
+    "Oatmeal Buah": "image/recipes/makananSehat/oatmeal_buah.jpg",
+    "Grilled Salmon": "image/recipes/makananSehat/grilled_salmon.jpg",
+    "Smoothie Bowl": "image/recipes/makananSehat/smoothie_bowl.jpg"
+  },
+  "Minuman": {
+    "Es Teh Manis": "image/recipes/minuman/es_teh_manis.jpg",
+    "Kopi Tubruk": "image/recipes/minuman/kopi_tubruk.jpg",
+    "Thai Tea": "image/recipes/minuman/thai_tea.jpg",
+    "Jus Alpukat": "image/recipes/minuman/jus_alpukat.jpg",
+    "Wedang Jahe": "image/recipes/minuman/wedang_jahe.jpg",
+    "Boba Brown Sugar": "image/recipes/minuman/boba_brown_sugar.jpg",
+    "Milkshake Cokelat": "image/recipes/minuman/milkshake_cokelat.jpg"
+  },
+  "Makanan Internasional": {
+    "Sushi": "image/recipes/makananInternasional/sushi.jpg",
+    "Tacos": "image/recipes/makananInternasional/tacos.jpg",
+    "Pasta Carbonara": "image/recipes/makananInternasional/pasta_carbonara.jpg"
+  }
+}
