@@ -6,6 +6,5 @@ export default function RecipeCategoryCard({name, img, id}) {
             <img src={img} alt="" className="w-full h-full brightness-75 transform group-hover:scale-108 transition-transform duration-300 object-cover" />
             <h1 className="absolute  bottom-[16%] text-center bg-no-repeat text-white w-[86%]    text-xl font-semibold">{name}</h1>
         </a>
-
     )
 }

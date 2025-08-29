@@ -11,6 +11,8 @@ import cemilan from "../assets/category/cireng.jpg"
 import cepatSaji from "../assets/category/burger.jpg"
 import RecipePostCard from "../components/recipe/RecipePostCard";
 
+import recipesData from "../data/recipe_data.json"
+
 
 export default function Recipes() {
 
@@ -27,6 +29,7 @@ export default function Recipes() {
         {name : 'Makanan Internasional', img : makananInternasional},
     ]
 
+    const recipeDataArray = Object.entries(recipesData)
     return (
         <div className="grid grid-cols-[1fr_10fr_1fr] md:grid-cols-[minmax(0,1fr)_minmax(0,8fr)_minmax(0,1fr)] mt-15 ">
             <div className="col-start-2 grid gap-20">
@@ -41,19 +44,18 @@ export default function Recipes() {
                         />
                     ))}
                 </div>
-                <div>
-                    <div id="0" className="scroll-mt-27 grid gap-5  ">
-                        <a href="#0" className="text-4xl font-bold text-secondry group w-fit grid grid-cols-[auto_1fr] gap-1 cursor-pointer max-md:justify-items-center"><span className="group-hover:text-accent text-light max-md:hidden">#</span>Makanan Utama</a>
-                        <div>
-                            <div className="grid place-items-center   grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 gap-y-14">
-                                <RecipePostCard/>
-                                <RecipePostCard/>
-                                <RecipePostCard/>
-
-                            </div>
+                <div className="grid gap-10">
+                    {recipeDataArray.map(([key, values], idx) => (
+                        <div key={idx} id={idx} className="scroll-mt-27 grid gap-5  ">
+                            <a href={`#${idx}`} className="  text-xl md:text-2xl lg:text-4xl font-bold text-secondry group w-fit grid grid-cols-[auto_1fr] gap-1 cursor-pointer max-md:justify-items-center"><span className="group-hover:text-accent text-light max-md:hidden">#</span>{key}</a>
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 ">
+                                {Object.entries(values).map(([name, img], idx) => (
+                                    <RecipePostCard title={name} img={img} key={idx}/>
+                                ))}
+                            </div>                        
                         </div>
-                        
-                    </div>
+                    ))
+                    }
                 </div>
                 
             </div>
