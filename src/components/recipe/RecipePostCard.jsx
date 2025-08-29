@@ -1,4 +1,3 @@
-import lazyLoad from "../../assets/lazy_load_image.jpg"
 
 export default function SecondaryPostCard({title, img}) {
     return (
