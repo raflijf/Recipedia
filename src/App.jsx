@@ -4,16 +4,20 @@ import MainLayout from "./layout/MainLayout"
 import Home from "./pages/Home"
 import Recipes from "./pages/Recipes"
 
+import { CacheProvider } from "./context/CacheContext"
+
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route element={<MainLayout/>} >
-          <Route path="/" element={<Home/>} />
-          <Route path="/recipe" element={<Recipes/>} />
-        </Route>
-      </Routes>
-    </Router>
+    <CacheProvider>
+      <Router>
+        <Routes>
+          <Route element={<MainLayout/>} >
+            <Route path="/" element={<Home/>} />
+            <Route path="/recipe" element={<Recipes/>} />
+          </Route>
+        </Routes>
+      </Router>
+    </CacheProvider>
   )
 }
 

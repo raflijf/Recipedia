@@ -1,14 +1,32 @@
 import { Helmet } from "react-helmet";
+import { useEffect } from "react";
+import { useContext } from "react";
+
+import axios from "axios";
+
+import { CacheContext } from "../context/CacheContext";
 
 import SearchBar from "../components/forms/SearchBar";
 import PrimaryButton from "../components/button/PrimaryButton";
 import PostCard from "../components/post/PostCard";
-
-import logo from '../assets/Recipedia.png'
 import PostCardSkeleton from "../components/loading/PostCardSkeleton";
 
+import logo from '../assets/Recipedia.png'
+
 export default function Home() {
-   
+
+    const {dataPost, setDataPost} = useContext(CacheContext)
+    useEffect(() => {
+        const fetchDataPost = async () => {
+            const res = await axios.get('https://dummyjson.com/recipes?limit=10', {headers : {"Cache-control" : "max-age_3600"}})
+            setTimeout(() => {
+                setDataPost(res.data.recipes)
+            }, 800)
+        }
+        !dataPost.length && fetchDataPost()
+    }, [])
+
+
     return (
         <>
             <Helmet>
@@ -22,12 +40,27 @@ export default function Home() {
                         <PrimaryButton>Buat resep anda sendiri</PrimaryButton>                
                     </div>
                     <div className="grid  place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 gap-y-14 md">
-                    <PostCard/>
-                    <PostCard/>
-                    <PostCard/>
-                        
+                    {!dataPost.length ? 
+                        <>
+                            <PostCardSkeleton/>               
+                            <PostCardSkeleton/>               
+                            <PostCardSkeleton/>               
+                            <PostCardSkeleton/>               
+                            <PostCardSkeleton/>               
+                            <PostCardSkeleton/>               
+                        </>
+                        :
+                        dataPost.map((item, idx) => (
+                            <PostCard 
+                                title={item.name}
+                                img={item.image}
+                                difficulty={item.difficulty}
+                                times={item.cookTimeMinutes}
+                                key={idx}
+                            />
+                        ))         
+                    }
                     </div>
-                
                 </div>
             </div>
         </>

@@ -1,10 +1,7 @@
-import { Link } from 'react-router-dom'
-import profil from '../../assets/billGates.jpeg'
-import piscok from '../../assets/piscok.png'
-
 import Like from '../icon/Like'
+import profil from '../../assets/billGates.jpeg'
 
-export default function PostCard() {
+export default function PostCard({img, difficulty, times, title}) {
     return (
         <div className="w-full max-w-md grid grid-rows-[auto_1fr_auto_auto] gap-2">
             <div className="flex justify-between items-center">
@@ -16,14 +13,14 @@ export default function PostCard() {
             </div>
             <div className="w-full overflow-hidden ">
                 <img
-                src={piscok}
-                className="w-full  rounded object-cover transform hover:scale-105   duration-300"
+                src={img}
+                className="w-full  rounded aspect-[10/7] lg:aspect-[16/12.5] transform hover:scale-105   duration-300"
                 alt=""
                 />
             </div>
             <div className="grid grid-cols-[auto_auto_1fr] justify-items-end items-center gap-3 h-auto">
-                <span className="font-bold text-accent text-lg sm:text-xl">10 Menit</span>
-                <span className="font-bold text-primary text-lg sm:text-xl">Mudah</span>
+                <span className="font-bold text-accent text-lg sm:text-xl">{times} Menit</span>
+                <span className="font-bold text-primary text-lg sm:text-xl">{difficulty}</span>
                 <Like
                 variant={"outline"}
                 moreStyle={"cursor-pointer"}
@@ -32,7 +29,7 @@ export default function PostCard() {
             </div>
             <div>
                 <h1 className="font-bold text-text text-lg sm:text-xl md:text-2xl leading-snug">
-                Resep membuat piscok ala papua selatan
+                {title}
                 </h1>
             </div>
         </div>
