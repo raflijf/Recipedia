@@ -11,10 +11,10 @@ export default function PostCard({img, difficulty, times, title}) {
                 </div>
                 <span className="text-sm text-text/60">20-07-2025</span>
             </div>
-            <div className="w-full overflow-hidden ">
+            <div className="w-full  overflow-hidden ">
                 <img
                 src={img}
-                className="w-full  rounded aspect-[10/7] lg:aspect-[16/12.5] transform hover:scale-105   duration-300"
+                className="w-full   rounded aspect-[10/7] object-cover lg:aspect-[16/12.5] transform hover:scale-105   duration-300"
                 alt=""
                 />
             </div>
@@ -28,7 +28,7 @@ export default function PostCard({img, difficulty, times, title}) {
                 />
             </div>
             <div>
-                <h1 className="font-bold text-text text-lg sm:text-xl md:text-2xl leading-snug">
+                <h1 className="font-bold text-text text-lg sm:text-xl md:text-2xl leading-snug line-clamp-1 ">
                 {title}
                 </h1>
             </div>
