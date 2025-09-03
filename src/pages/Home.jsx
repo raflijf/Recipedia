@@ -75,7 +75,7 @@ export default function Home() {
                         :
                         dataPost.data.map((item, idx) => (
                             <PostCard 
-                            title={item.id}
+                            title={item.name}
                             img={item.image}
                             difficulty={item.difficulty}
                             times={item.cookTimeMinutes}
