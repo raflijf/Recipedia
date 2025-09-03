@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 
 import axios from "axios";
@@ -14,18 +14,41 @@ import PostCardSkeleton from "../components/loading/PostCardSkeleton";
 import logo from '../assets/Recipedia.png'
 
 export default function Home() {
-
+    
     const {dataPost, setDataPost} = useContext(CacheContext)
+    const [isAddDataPost, setIsAddDataPost] = useState(false)
+    const [skipData, setSkipData] = useState(0)
     useEffect(() => {
         const fetchDataPost = async () => {
-            const res = await axios.get('https://dummyjson.com/recipes?limit=10', {headers : {"Cache-control" : "max-age_3600"}})
+            const res = await axios.get(`https://dummyjson.com/recipes?limit=10&skip=${skipData}`)
             setTimeout(() => {
-                setDataPost(res.data.recipes)
+                setDataPost({
+                    data : [...dataPost.data, ...res.data.recipes],
+                    total : res.data.total
+                })
             }, 800)
         }
-        !dataPost.length && fetchDataPost()
+       if (skipData < dataPost.total && dataPost.data.length || !(dataPost.data.length)) {
+            fetchDataPost()
+        }
+    }, [skipData])
+    
+    useEffect(() => {   
+        const handleScroll = () => {
+            const endScroll = window.innerHeight + window.scrollY
+            const relativeScrollHeight = document.body.scrollHeight * 0.75
+            setIsAddDataPost(endScroll >= relativeScrollHeight)
+       }
+       window.addEventListener('scroll' , handleScroll)
+
+       return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
+    useEffect(() => {
+        if (isAddDataPost) {
+            setSkipData(prev  => prev + 10)
+        }
+    }, [isAddDataPost])
 
     return (
         <>
@@ -39,8 +62,8 @@ export default function Home() {
                         <SearchBar/>
                         <PrimaryButton>Buat resep anda sendiri</PrimaryButton>                
                     </div>
-                    <div className="grid  place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 gap-y-14 md">
-                    {!dataPost.length ? 
+                    <div  className="grid  place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 gap-y-14 ">
+                    {!(dataPost.data.length) ? 
                         <>
                             <PostCardSkeleton/>               
                             <PostCardSkeleton/>               
@@ -50,16 +73,17 @@ export default function Home() {
                             <PostCardSkeleton/>               
                         </>
                         :
-                        dataPost.map((item, idx) => (
+                        dataPost.data.map((item, idx) => (
                             <PostCard 
-                                title={item.name}
-                                img={item.image}
-                                difficulty={item.difficulty}
-                                times={item.cookTimeMinutes}
-                                key={idx}
+                            title={item.id}
+                            img={item.image}
+                            difficulty={item.difficulty}
+                            times={item.cookTimeMinutes}
+                            key={idx}
                             />
                         ))         
                     }
+                   
                     </div>
                 </div>
             </div>
