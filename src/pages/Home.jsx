@@ -4,8 +4,6 @@ import { useContext } from "react";
 
 import axios from "axios";
 
-import { PostCacheContext } from "../context/PostCacheContext";
-
 import SearchBar from "../components/forms/SearchBar";
 import PrimaryButton from "../components/button/PrimaryButton";
 import PostCard from "../components/post/PostCard";
