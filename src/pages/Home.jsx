@@ -1,54 +1,58 @@
 import { Helmet } from "react-helmet";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useContext } from "react";
 
 import axios from "axios";
 
-import { CacheContext } from "../context/CacheContext";
+import { PostCacheContext } from "../context/PostCacheContext";
 
 import SearchBar from "../components/forms/SearchBar";
 import PrimaryButton from "../components/button/PrimaryButton";
 import PostCard from "../components/post/PostCard";
 import PostCardSkeleton from "../components/loading/PostCardSkeleton";
+import DostLoader from "../components/loading/dots/DotsLoader";
 
 import logo from '../assets/Recipedia.png'
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 export default function Home() {
-    
-    const {dataPost, setDataPost} = useContext(CacheContext)
-    const [isAddDataPost, setIsAddDataPost] = useState(false)
-    const [skipData, setSkipData] = useState(0)
-    useEffect(() => {
-        const fetchDataPost = async () => {
-            const res = await axios.get(`https://dummyjson.com/recipes?limit=10&skip=${skipData}`)
-            setTimeout(() => {
-                setDataPost({
-                    data : [...dataPost.data, ...res.data.recipes],
-                    total : res.data.total
-                })
-            }, 800)
-        }
-       if (skipData < dataPost.total && dataPost.data.length || !(dataPost.data.length)) {
-            fetchDataPost()
-        }
-    }, [skipData])
-    
-    useEffect(() => {   
-        const handleScroll = () => {
-            const endScroll = window.innerHeight + window.scrollY
-            const relativeScrollHeight = document.body.scrollHeight * 0.75
-            setIsAddDataPost(endScroll >= relativeScrollHeight)
-       }
-       window.addEventListener('scroll' , handleScroll)
 
-       return () => window.removeEventListener('scroll', handleScroll)
+    const fetchData = async (pageParam) => {
+        const res = await axios.get(`https://dummyjson.com/recipes?limit=10&skip=${pageParam}`)
+        return res.data
+    }
+
+    const {data, fetchNextPage, isLoading, isFetchingNextPage,...moreQueryReturn} = useInfiniteQuery({
+        queryKey : ['post'],
+        queryFn : ({pageParam}) => fetchData(pageParam),
+        initialPageParam : 0, 
+        getNextPageParam : (lastPage) => {
+            if (lastPage.skip + lastPage.limit < lastPage.total) {
+                return lastPage.skip + lastPage.limit;
+            }
+            return undefined
+        },
+        
+    }) 
+
+    const observerRef = useRef(null)
+    useEffect(() => {
+       const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+            fetchNextPage()
+        }
+       }, {rootMargin : '350px'})
+
+       if (observerRef.current) {
+           observer.observe(observerRef.current)
+       }
+       return () => { if (observerRef.current)  observer.unobserve(observerRef.current)}
+
     }, [])
 
-    useEffect(() => {
-        if (isAddDataPost) {
-            setSkipData(prev  => prev + 10)
-        }
-    }, [isAddDataPost])
+    window.addEventListener('unload', () => {
+        window.scrollTo({top : 0, behavior : 'instant'})
+    })
 
     return (
         <>
@@ -63,8 +67,12 @@ export default function Home() {
                         <PrimaryButton>Buat resep anda sendiri</PrimaryButton>                
                     </div>
                     <div  className="grid  place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 gap-y-14 ">
-                    {!(dataPost.data.length) ? 
-                        <>
+                    {isLoading ? 
+                         <>
+                            <PostCardSkeleton/>               
+                            <PostCardSkeleton/>               
+                            <PostCardSkeleton/>               
+                            <PostCardSkeleton/>               
                             <PostCardSkeleton/>               
                             <PostCardSkeleton/>               
                             <PostCardSkeleton/>               
@@ -72,19 +80,29 @@ export default function Home() {
                             <PostCardSkeleton/>               
                             <PostCardSkeleton/>               
                         </>
-                        :
-                        dataPost.data.map((item, idx) => (
+                        :                    
+                        data?.pages.map(page => (
+                            page.recipes.map((post, idx) =>  (
                             <PostCard 
-                            title={item.name}
-                            img={item.image}
-                            difficulty={item.difficulty}
-                            times={item.cookTimeMinutes}
-                            key={idx}
-                            />
-                        ))         
+                                title={post.name}
+                                img={post.image}
+                                difficulty={post.difficulty}
+                                times={post.cookTimeMinutes}
+                                key={idx}
+                                />
+                            ))
+                        ))
                     }
-                   
+
                     </div>
+                    <div  ref={observerRef} ></div>
+                    {isFetchingNextPage && 
+                        <div className="flex justify-center">
+                            <DostLoader/>
+                        </div>
+                    }
+
+                    
                 </div>
             </div>
         </>

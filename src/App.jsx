@@ -4,20 +4,25 @@ import MainLayout from "./layout/MainLayout"
 import Home from "./pages/Home"
 import Recipes from "./pages/Recipes"
 
-import { CacheProvider } from "./context/CacheContext"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { PostCacheProvider } from "./context/PostCacheContext"
+
+const queryClient = new QueryClient()
 
 function App() {
   return (
-    <CacheProvider>
-      <Router>
-        <Routes>
-          <Route element={<MainLayout/>} >
-            <Route path="/" element={<Home/>} />
-            <Route path="/recipe" element={<Recipes/>} />
-          </Route>
-        </Routes>
-      </Router>
-    </CacheProvider>
+    <QueryClientProvider client={queryClient}>
+      <PostCacheProvider>
+        <Router>
+          <Routes>
+            <Route element={<MainLayout/>} >
+              <Route path="/" element={<Home/>} />
+              <Route path="/recipe" element={<Recipes/>} />
+            </Route>
+          </Routes>
+        </Router>
+      </PostCacheProvider>
+    </QueryClientProvider>
   )
 }
 
