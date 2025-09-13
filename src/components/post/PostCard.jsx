@@ -1,15 +1,14 @@
 import Like from '../icon/Like'
 import profil from '../../assets/billGates.jpeg'
 
-export default function PostCard({img, difficulty, times, title}) {
+export default function PostCard({img, difficulty, times, title, ref}) {
     return (
-        <div className="w-full max-w-md grid grid-rows-[auto_1fr_auto_auto] gap-2">
+        <div className="w-full max-w-md grid grid-rows-[auto_1fr_auto_auto] gap-2" ref={ref} >  
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-3">
                     <img src={profil} className="w-8 h-8 rounded-full object-cover" alt="" />
                     <p className="font-semibold">Emak seram</p>
                 </div>
-                <span className="text-sm text-text/60">20-07-2025</span>
             </div>
             <div className="w-full  overflow-hidden ">
                 <img
