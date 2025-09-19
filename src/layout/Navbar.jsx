@@ -38,7 +38,7 @@ export default function Navbar() {
 
                         <div className='hidden  lg:flex  justify-between w-[40%] items-center '>
                             <NavItem to={'/'}>Beranda</NavItem>
-                            <NavItem to={'/recipe'}>Resep</NavItem>
+                            <NavItem to={'/recipes'}>Resep</NavItem>
                             <NavItem to={'/Favorite'}>Favorit</NavItem>
                             <Link to={'/'}>
                                 <PrimaryButton >Buat Resep</PrimaryButton>

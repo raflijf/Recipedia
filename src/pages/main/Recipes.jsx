@@ -54,38 +54,37 @@ export default function Recipes() {
             <Helmet>    
                 <title>Resep</title>
             </Helmet>
-            <div className="grid grid-cols-[1fr_10fr_1fr] md:grid-cols-[minmax(0,1fr)_minmax(0,8fr)_minmax(0,1fr)] mt-15 ">
-                <div className="col-start-2 grid gap-20">
-                    <div className="flex flex-wrap justify-center gap-4 scroll-mt-27" id="menu">
-                        {categoriesRecipe.map((itm, idx) => (
-                            <RecipeCategoryCard 
-                                name={itm.name} 
-                                img={itm.img}
-                                key={idx}
-                                id={idx}
-                                
-                            />
-                        ))}
-                    </div>
-                    <div className="grid gap-10 " ref={categoryRef} >
-                        {recipeDataArray.map(([key, values], idx) => (
-                            <div key={idx} id={idx} className="scroll-mt-27 grid gap-5  " >
-                                <a href={`#${idx}`} className="  text-xl md:text-2xl lg:text-4xl font-bold text-secondry group w-fit grid grid-cols-[auto_1fr] gap-1 cursor-pointer max-md:justify-items-center"><span className="group-hover:text-accent text-light max-md:hidden">#</span>{key}</a>
-                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 ">
-                                    {Object.entries(values).map(([name, img], idx) => (
-                                        <RecipePostCard title={name} img={img} key={idx} />
-                                    ))}
-                                </div>                        
-                            </div>
-                        ))
-                        }
-                    </div>
-                    <div className=" sticky bottom-3 justify-center  w-full " ref={goUpButtonRef}  style={{'display' : 'none'}}>
-                        <a href="#menu" className="bg-secondry w-fit  flex items-center text-white p-1 h-10 px-3 rounded-xl font-semibold gap-3 pointer-events-auto "> 
-                            <ArrowUpIcon className="size-7" strokeWidth={2.5} />
-                            <p>Kembali keatas</p>
-                        </a>
-                    </div>
+
+            <div className="grid gap-20">
+                <div className="flex flex-wrap justify-center gap-4 scroll-mt-27" id="menu">
+                    {categoriesRecipe.map((itm, idx) => (
+                        <RecipeCategoryCard 
+                            name={itm.name} 
+                            img={itm.img}
+                            key={idx}
+                            id={idx}
+                            
+                        />
+                    ))}
+                </div>
+                <div className="grid gap-10 " ref={categoryRef} >
+                    {recipeDataArray.map(([key, values], idx) => (
+                        <div key={idx} id={idx} className="scroll-mt-27 grid gap-5  " >
+                            <a href={`#${idx}`} className="  text-xl md:text-2xl lg:text-4xl font-bold text-secondry group w-fit grid grid-cols-[auto_1fr] gap-1 cursor-pointer max-md:justify-items-center"><span className="group-hover:text-accent text-light max-md:hidden">#</span>{key}</a>
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 ">
+                                {Object.entries(values).map(([name, img], idx) => (
+                                    <RecipePostCard title={name} img={img} key={idx} />
+                                ))}
+                            </div>                        
+                        </div>
+                    ))
+                    }
+                </div>
+                <div className=" sticky bottom-3 justify-center  w-full " ref={goUpButtonRef}  style={{'display' : 'none'}}>
+                    <a href="#menu" className="bg-secondry w-fit  flex items-center text-white p-1 h-10 px-3 rounded-xl font-semibold gap-3 pointer-events-auto "> 
+                        <ArrowUpIcon className="size-7" strokeWidth={2.5} />
+                        <p>Kembali keatas</p>
+                    </a>
                 </div>
             </div>
         </>

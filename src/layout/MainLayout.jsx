@@ -7,8 +7,10 @@ export default function MainLayout() {
     return (
         <div className="grid grid-rows-[auto_1fr_auto] h-screen">
             <Navbar/>
-            <div>
-                <Outlet/>
+            <div className="grid  grid-cols-[1fr_10fr_1fr] md:grid-cols-[minmax(0,1fr)_minmax(0,8fr)_minmax(0,1fr)] ">
+                <div className=" col-start-2 ">
+                    <Outlet/>
+                </div>
             </div>
             <Footer/>
         </div>

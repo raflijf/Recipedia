@@ -7,6 +7,7 @@ import Favorite from "./pages/main/Favorite"
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import NotFound from "./pages/error/404"
+import PostDetail from "./pages/main/PostDetail"
 const queryClient = new QueryClient()
 
 function App() {
@@ -16,8 +17,9 @@ function App() {
           <Routes>
             <Route element={<MainLayout/>} >
               <Route path="/" element={<Home/>} />
-              <Route path="/recipe" element={<Recipes/>} />
-              <Route path="favorite" element={<Favorite/>} />
+              <Route path="/recipes" element={<Recipes/>} />
+              <Route path="/favorite" element={<Favorite/>} />
+              <Route path="/recipe/:recipe" element={<PostDetail/>} />
             </Route>
           <Route path="*" element={<NotFound/>}  />
           </Routes>
