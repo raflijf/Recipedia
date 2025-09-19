@@ -81,6 +81,7 @@ export default function Home() {
                         page.recipes.map((post, idx) =>  (
                         <PostCard 
                             title={post.name}
+                            id={post.id}
                             img={post.image}
                             difficulty={post.difficulty}
                             times={post.cookTimeMinutes}
