@@ -1,14 +1,14 @@
 import { useState } from "react"
 
+import { MagnifyingGlassIcon, XMarkIcon } from "@heroicons/react/24/outline"
+
 export default function SearchBar() {
     const [value, setValue] = useState('')
     
 
     return (
         <div className="flex  items-center gap-2 rounded-full border-2 border-black/65 px-3   w-[90%]  md:w-[85%] lg:w-[60%]">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-            </svg>
+            <MagnifyingGlassIcon className="size-6"/>
             <input 
                 type="text"  
                 className=" h-9 w-full  focus:outline-none font-light" 
@@ -19,9 +19,7 @@ export default function SearchBar() {
             />
             <div className="w-4">
                 {value.length > 0 && 
-                    <svg onClick={() => setValue('')}   cursor={'pointer'} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
+                   <XMarkIcon className="size-5"/>
                 }
             </div>
         </div>
