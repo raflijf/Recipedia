@@ -44,7 +44,7 @@ export default function Navbar() {
                             <NavItem to={'/'}>Beranda</NavItem>
                             <NavItem to={'/recipes'}>Resep</NavItem>
                             <NavItem to={'/Favorite'}>Favorit</NavItem>
-                            <Link to={'/'}>
+                            <Link to={'/create'}>
                                 <PrimaryButton >Buat Resep</PrimaryButton>
                             </Link>
                         </div>
