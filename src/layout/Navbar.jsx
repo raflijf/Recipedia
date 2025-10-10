@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 
 import NavItem from '../components/navbar/NavItem'
 import PrimaryButton from '../components/button/PrimaryButton'
@@ -7,7 +7,10 @@ import PrimaryButton from '../components/button/PrimaryButton'
 import logo from '../assets/Recipedia.png'
 import SecondryButton from '../components/button/SecondryButton'
 
+import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+
 import clsx from 'clsx'
+import { SearchContext } from '../context/SearchContext'
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -23,8 +26,9 @@ export default function Navbar() {
         else shadowRef.current.classList.remove('shadow-lg')
     })
     
+    const {setOpenSearchModal} = useContext(SearchContext)
     return (
-        <nav className='w-full h-15 lg:h-20 z-10 '>
+        <nav className='w-full h-15 lg:h-20 z-20 '>
             <div className='fixed w-full'>
                 <div className={clsx('bg-light duration-[1000ms] h-15 lg:h-20 grid place-items-center  w-full ')} ref={shadowRef}  >
                     <div className='w-[90%] lg:w-[95%] flex items-center justify-between '>
@@ -49,15 +53,13 @@ export default function Navbar() {
                             <SecondryButton color='secondry' >Register</SecondryButton>
                             <PrimaryButton color='secondry' >Login</PrimaryButton>
                         </div> 
-                        <div className='duration-300 lg:hidden'>
+
+                        <div className='duration-300 lg:hidden flex gap-4 items-center'>
+                            <MagnifyingGlassIcon className='search size-5' onClick={() => setOpenSearchModal(true)}/>
                             {menuOpen ? 
-                                <svg onClick={handleMenu}  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-                                    <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
-                                </svg>
+                                <XMarkIcon className='size-6' onClick={handleMenu}/>
                                 :
-                                <svg onClick={handleMenu} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6 ">
-                                    <path fillRule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clipRule="evenodd" />
-                                </svg>
+                                <Bars3Icon className='size-6' onClick={handleMenu}/>
                             }
                         </div>
                     </div>
@@ -67,7 +69,7 @@ export default function Navbar() {
                         <div>
                             <div className='grid grid-rows-4 gap-3 justify-items-center items-center '>
                                 <NavItem to={'/'}>Beranda</NavItem>
-                                <NavItem to={'/recipe'}>Resep</NavItem>
+                                <NavItem to={'/recipes'}>Resep</NavItem>
                                 <NavItem to={'/Favorite'}>Favorit</NavItem>
                                 <Link to={'/'}>
                                     <PrimaryButton >Buat Resep</PrimaryButton>

@@ -9,23 +9,20 @@ import DetailPostSkeleton from "../../components/loading/DetailPostSkeleton"
 export default function PostDetail() {
     const {slug} = useParams()
 
-    const fetchRecipe = async (slug) => {
-        const start = performance.now()
-        const res = await axios.get(`https://dummyjson.com/recipes/${slug}`)
-        const end = performance.now()
-
-        console.log(start, end, end - start)
-        return res.data
+    const fetchRecipe = async (slug) => { 
+        try {
+            const res = await axios.get(`https://dummyjson.com/recipes/${slug}?delay=800`)
+            return res.data
+        } catch (err ) {
+            console.log(err) 
+        }
     }    
 
     const {data, isLoading, isError, error} = useQuery({
         queryKey : ['post', slug], 
         queryFn : () => fetchRecipe(slug),
         retry : false
-
     })
-    console.log(isError)
-    console.log(error?.status)
 
     window.scrollTo({top : 0, behavior : 'instant'})
 
@@ -35,9 +32,9 @@ export default function PostDetail() {
                 <DetailPostSkeleton/>
                 :
                 isError && error?.status === 404 ? 
-                <NotFound/>
-                :
-                <DetailPostLayout data={data}/>
+                    <NotFound/>
+                    :
+                    <DetailPostLayout data={data}/>
             }
            
         </div>

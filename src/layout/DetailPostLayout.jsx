@@ -24,14 +24,14 @@ export default function DetailPostLayout({data}) {
         <div className="grid lg:grid-cols-2 gap-3 max-w-6xl mx-auto   ">
             <div className="  flex justify-center w-full ">
                 <img 
-                    src={data.image} 
+                    src={data?.image} 
                     alt="picok" 
                     className="rounded-lg  w-full  md:h-80 2xl:h-100  aspect-[10/6] lg:aspect-[16/9] object-cover "
                 />
             </div>
             <div className="grid-rows-[1fr_auto]  grid gap-5 ">
                 <div>
-                    <h1 className="text-3xl  text-text font-bold">{data.name}</h1>
+                    <h1 className="text-3xl  text-text font-bold">{data?.name}</h1>
                     <div className="flex gap-2 my-2.5">
                         <img 
                             src={seram} 
@@ -44,7 +44,7 @@ export default function DetailPostLayout({data}) {
                         </div>
                     </div>
                     <p className={clsx('text-sm', moreDesc ? 'line-clamp-none' : 'line-clamp-7' )}>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia vitae accusantium, molestias, nobis laboriosam quos earum iure animi amet tenetur dolores modi! Velit delectus voluptatem itaque dolorum rerum accusantium ad eos. Quae temporibus illum voluptate fugiat accusantium necessitatibus. Perspiciatis itaque ea sint pariatur quis ipsum corrupti quia, repudiandae recusandae nulla porro ad dolor omnis voluptate maiores, repellendus odit possimus consectetur doloremque aliquid blanditiis at! Libero, qui. Libero sapiente hic explicabo accusantium ab non quia illum molestiae ratione accusamus necessitatibus distinctio sunt, quos nulla fugiat neque nobis et ipsum aspernatur. Quidem reprehenderit laudantium provident ut harum minus unde, dolorem itaque quisquam!
+                       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, laudantium.
                     </p>
                     <span 
                         className="text-center flex justify-center cursor-pointer text-accent text-sm  items-center"
@@ -66,7 +66,7 @@ export default function DetailPostLayout({data}) {
                     <HeartIcon className=" size-10 text-accent" />
                     <div className="flex items-centerw ">
                         <FireIcon className="size-9 text-primary" />
-                        <h2 className=" text-2xl lg:text-3xl font-bold text-primary">{data.difficulty}</h2>
+                        <h2 className=" text-2xl lg:text-3xl font-bold text-primary">{data?.difficulty}</h2>
                     </div>
                 </div>
             </div>
@@ -75,11 +75,11 @@ export default function DetailPostLayout({data}) {
                     <h2 className="font-semibold text-3xl text-text ">Komposisi</h2>
                     <div className="flex gap-3 items-center opacity-70  mt-1.5">
                         <UserIcon className="size-6"/>
-                        <span className="text-lg">{data.servings} orang</span>
+                        <span className="text-lg">{data?.servings} orang</span>
                     </div>
                 </div>
                 <ul className="list-disc ml-1 p-0 list-inside marker:text-secondry flex flex-col gap-2"> 
-                    {data.ingredients.map((itm, idx) => (
+                    {data?.ingredients.map((itm, idx) => (
                         <li key={idx}>{itm}</li>
                     ))}
                 </ul>
@@ -89,11 +89,11 @@ export default function DetailPostLayout({data}) {
                     <h2 className="font-semibold text-3xl text-text" >Langkah - langkah</h2>
                     <div className="flex items-center gap-3 opacity-70 mt-1.5">
                         <ClockIcon  className="size-6 text-text" />
-                        <h2 className="text-xl ">{data.cookTimeMinutes} Menit</h2>
+                        <h2 className="text-xl ">{data?.cookTimeMinutes} Menit</h2>
                     </div>
                 </div>
                 <ol className="space-y-4">
-                    {data.instructions.map((itm, idx) => (
+                    {data?.instructions.map((itm, idx) => (
                         <li className="flex gap-3" key={idx}>
                             <div className="bg-secondry rounded-full w-9 h-9 grid place-items-center text-white font-medium text-lg">{idx + 1}</div>
                             <div className="bg-secondry/15 w-full flex items-center px-2 rounded ">
