@@ -8,6 +8,8 @@ import Recipes from "./pages/main/Recipes"
 import Favorite from "./pages/main/Favorite"
 import NotFound from "./pages/error/404"
 import PostDetail from "./pages/main/PostDetail"
+import Create from "./pages/main/Create"
+import Playground from "./pages/Playground"
 
 import { SearchProvider } from "./context/SearchContext"
 
@@ -24,7 +26,9 @@ function App() {
               <Route path="/recipes" element={<Recipes/>} />
               <Route path="/favorite" element={<Favorite/>} />
               <Route path="/recipe/:slug" element={<PostDetail/>} />
+              <Route path="/recipe/create" element={<Create/>} />
             </Route>
+          <Route path="/playground" element={<Playground/>}  />
           <Route path="*" element={<NotFound/>}  />
           </Routes>
         </Router>

@@ -26,6 +26,11 @@ export default function Navbar() {
         else shadowRef.current.classList.remove('shadow-lg')
     })
     
+    const getIdCreateRecipe = () => {
+        const data = JSON.parse(localStorage.getItem('recipesSaved'))
+        return data ? data.length : 0
+    }
+
     const {setOpenSearchModal} = useContext(SearchContext)
     return (
         <nav className='w-full h-15 lg:h-20 z-20 '>
@@ -44,7 +49,7 @@ export default function Navbar() {
                             <NavItem to={'/'}>Beranda</NavItem>
                             <NavItem to={'/recipes'}>Resep</NavItem>
                             <NavItem to={'/Favorite'}>Favorit</NavItem>
-                            <Link to={'/create'}>
+                            <Link to={`/recipe/create`}>
                                 <PrimaryButton >Buat Resep</PrimaryButton>
                             </Link>
                         </div>
@@ -71,7 +76,7 @@ export default function Navbar() {
                                 <NavItem to={'/'}>Beranda</NavItem>
                                 <NavItem to={'/recipes'}>Resep</NavItem>
                                 <NavItem to={'/Favorite'}>Favorit</NavItem>
-                                <Link to={'/create'}>
+                                <Link to={`/recipe/create?id=${getIdCreateRecipe()}`}>
                                     <PrimaryButton >Buat Resep</PrimaryButton>
                                 </Link>
                                 <div className='flex gap-3'>
