@@ -12,27 +12,30 @@ import Create from "./pages/main/Create"
 import Playground from "./pages/Playground"
 
 import { SearchProvider } from "./context/SearchContext"
+import { ToastProvider } from "./context/ToastProvider"
 
 const queryClient = new QueryClient()
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <SearchProvider>
-        <Router>
-          <Routes>
-            <Route element={<MainLayout/>} >
-              <Route path="/" element={<Home/>} />
-              <Route path="/recipes" element={<Recipes/>} />
-              <Route path="/favorite" element={<Favorite/>} />
-              <Route path="/recipe/:slug" element={<PostDetail/>} />
-              <Route path="/recipe/create" element={<Create/>} />
-            </Route>
-          <Route path="/playground" element={<Playground/>}  />
-          <Route path="*" element={<NotFound/>}  />
-          </Routes>
-        </Router>
-      </SearchProvider>
+      <ToastProvider>
+        <SearchProvider>
+          <Router>
+            <Routes>
+              <Route element={<MainLayout/>} >
+                <Route path="/" element={<Home/>} />
+                <Route path="/recipes" element={<Recipes/>} />
+                <Route path="/favorite" element={<Favorite/>} />
+                <Route path="/recipe/:slug" element={<PostDetail/>} />
+                <Route path="/recipe/create" element={<Create/>} />
+              </Route>
+            <Route path="/playground" element={<Playground/>}  />
+            <Route path="*" element={<NotFound/>}  />
+            </Routes>
+          </Router>
+        </SearchProvider>
+      </ToastProvider>
     </QueryClientProvider>
   )
 }

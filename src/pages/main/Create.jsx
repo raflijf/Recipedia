@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
+
+import { ToastContext } from "../../context/ToastProvider"
 
 import clsx from "clsx"
 
@@ -13,7 +15,6 @@ import FormInputCreate from "../../components/forms/create_page/field/FormInputC
 import FormInputCreateStep from "../../components/forms/create_page/field/FormInputCreateStep"
 import PrimaryButton from "../../components/button/PrimaryButton"
 import SecondryButton from "../../components/button/SecondryButton"
-import BaseModal from "../../components/modal/BaseModal"
 import SaveRecipeAttentionModal from "../../components/modal/create/SaveRecipeAttentionModal"
 
 
@@ -123,6 +124,7 @@ export default function  Create() {
         setAddedFields(prev => ({...prev, steps : getData.steps}))
     }, [idParams])
     
+    const setToast = useContext(ToastContext)
     const handleSaveRecipe = () => {
         let recipesSaved = JSON.parse(localStorage.getItem('recipesSaved')) || []
         const id = recipesSaved ? recipesSaved.length : 0
@@ -145,6 +147,7 @@ export default function  Create() {
             setSearchParams({id : id})
         }
         localStorage.setItem('recipesSaved', JSON.stringify(recipesSaved))
+        setToast({show : true, status : 'success', message : 'Resep Berhasil Disimpan'})
     }
     const handleReset = () => { 
         if (isNaN(idParams)) {
@@ -154,6 +157,7 @@ export default function  Create() {
         }
         setAddedFields(defaultAddedFields)
         setFile(null)
+        setToast({show : true, status : 'neutral', message : 'Semua Bidang Berhasil Reset'})
     }
 
     const handleSubmit = (e) => {
@@ -163,6 +167,7 @@ export default function  Create() {
             const dontRememberMe = localStorage.getItem('dontRememerMeAttentionSaveRecipe')
             if (dontRememberMe === 'true') {
                 handleSaveRecipe()
+
             } else {
                 setShowSaveRecipeAttention(true)
             }
@@ -339,14 +344,15 @@ export default function  Create() {
                         </SecondryButton>
                         <button
                             name="reset"
-                            className="border-2 w-40 rounded duration-200 font-semibold cursor-pointer py-1.5 px-4 text-base sm:py-2.5 sm:px-5.5 sm:text-lg border-red-500 text-red-500 hover:bg-red-500/20  "
+                            className="border-2 w-40 rounded duration-200 font-semibold cursor-pointer py-1.5 px-4 text-base sm:py-2.5 sm:px-5.5 sm:text-lg border-gray-500 text-gray-500 hover:bg-gray-500/20  "
                         >
-                            Hapus
+                            Reset
                         </button>
                     </div>
                 </form>
             </main>
             <SaveRecipeAttentionModal show={showSaveRecipeAttention} onClose={setShowSaveRecipeAttention} handleSaveRecipe={handleSaveRecipe}/>
+       
         </div>
     )
 }
