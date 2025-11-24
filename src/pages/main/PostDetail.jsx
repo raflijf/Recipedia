@@ -10,20 +10,16 @@ export default function PostDetail() {
     const {slug} = useParams()
 
     const fetchRecipe = async (slug) => { 
-        try {
-            const res = await axios.get(`https://dummyjson.com/recipes/${slug}?delay=800`)
-            return res.data
-        } catch (err ) {
-            console.log(err) 
-        }
+        const res = await axios.get(`https://dummyjson.com/recipes/${slug}?delay=800`)
+        return res.data
     }    
 
-    const {data, isLoading, isError, error} = useQuery({
+    const {data, isLoading, isError, error, status} = useQuery({
         queryKey : ['post', slug], 
         queryFn : () => fetchRecipe(slug),
         retry : false
     })
-
+    console.log(status)
     window.scrollTo({top : 0, behavior : 'instant'})
 
     return (
