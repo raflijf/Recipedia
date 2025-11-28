@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 import { useParams } from "react-router-dom"
 
-import NotFound from "../../components/post/NotFound"
+import ErrorPage from "../error/ErrorPage"
 import DetailPostLayout from "../../layout/DetailPostLayout"
 import DetailPostSkeleton from "../../components/loading/DetailPostSkeleton"
 
@@ -19,7 +19,7 @@ export default function PostDetail() {
         queryFn : () => fetchRecipe(slug),
         retry : false
     })
-    console.log(status)
+    console.log(error)
     window.scrollTo({top : 0, behavior : 'instant'})
 
     return (
@@ -27,12 +27,11 @@ export default function PostDetail() {
            {isLoading ? 
                 <DetailPostSkeleton/>
                 :
-                isError && error?.status === 404 ? 
-                    <NotFound/>
+                isError ? 
+                    <ErrorPage statusCode={error?.status} />
                     :
                     <DetailPostLayout data={data}/>
             }
-           
         </div>
     )
 }
