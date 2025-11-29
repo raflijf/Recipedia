@@ -1,16 +1,17 @@
-import { Link } from 'react-router-dom'
 import { useContext, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import clsx from 'clsx'
 
 import NavItem from '../components/navbar/NavItem'
 import PrimaryButton from '../components/button/PrimaryButton'
-
-import logo from '../assets/Recipedia.png'
 import SecondryButton from '../components/button/SecondryButton'
 
-import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-
-import clsx from 'clsx'
 import { SearchContext } from '../context/SearchContext'
+
+import logo from '../assets/Recipedia.png'
+import profil from '../assets/billGates.jpeg'
+
+import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -54,13 +55,18 @@ export default function Navbar() {
                             </Link>
                         </div>
                         <div className='hidden  lg:flex  gap-1 items-center'>
-                            {/* <img src="https://imageio.forbes.com/specials-images/imageserve/62d599ede3ff49f348f9b9b4/0x0.jpg?format=jpg&crop=821,821,x155,y340,safe&height=416&width=416&fit=bounds"  className='rounded-full w-12' alt="" /> */}
+                            {/* <Link to={'/profile/1'}>
+                                <img src={profil} className='rounded-full w-12' alt="" />
+                            </Link> */}
                             <SecondryButton color='secondry' >Register</SecondryButton>
                             <PrimaryButton color='secondry' >Login</PrimaryButton>
                         </div> 
 
                         <div className='duration-300 lg:hidden flex gap-4 items-center'>
                             <MagnifyingGlassIcon className='search size-5' onClick={() => setOpenSearchModal(true)}/>
+                            <Link to={'/profile/1'}>
+                                <img src={profil} className='rounded-full  w-7 lg:w-12  ' alt="" />
+                            </Link>
                             {menuOpen ? 
                                 <XMarkIcon className='size-6' onClick={handleMenu}/>
                                 :

@@ -1,6 +1,7 @@
 import { useEffect } from "react"
+import clsx from "clsx"
 
-export default function BaseModal({ show, onClose, children }) {
+export default function BaseModal({ show, onClose, children, width, fullScreen }) {
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") onClose()
@@ -24,6 +25,14 @@ export default function BaseModal({ show, onClose, children }) {
       onClose()
     }
   }
+  const widthClasses = {
+    sm:"max-w-sm",
+    md:"max-w-md",
+    lg:"max-w-lg",
+    xl:"max-w-xl",
+    twoxl:"max-w-2xl",
+    threexl:"max-w-3xl",
+  }
 
   return (
     <div
@@ -31,7 +40,10 @@ export default function BaseModal({ show, onClose, children }) {
       onClick={handleBackdropClick}
     >
       <div
-        className="modal-container bg-light rounded p-6 w-[90%] md:w-full max-w-md shadow-lg animate-slide-up  "
+        className={clsx("modal-container bg-light rounded   p-6  shadow-lg animate-slide-up",
+          width ? widthClasses[width]  :  "max-w-md ",
+          fullScreen ? "h-full w-full" : "w-[95%] md:w-full "
+          )}
       >
         {children}
       </div>

@@ -11,6 +11,10 @@ import PostDetail from "./pages/main/PostDetail"
 import Create from "./pages/main/Create"
 import Playground from "./pages/Playground"
 
+// account 
+import Profile from "./pages/account/Profile"
+import Login from "./pages/account/auth/login"
+
 import { SearchProvider } from "./context/SearchContext"
 import { ToastProvider } from "./context/ToastProvider"
 
@@ -29,9 +33,13 @@ function App() {
                 <Route path="/favorite" element={<Favorite/>} />
                 <Route path="/recipe/:slug" element={<PostDetail/>} />
                 <Route path="/recipe/create" element={<Create/>} />
+                <Route path="/profile/:uid" element={<Profile/>} />
               </Route>
-            <Route path="/playground" element={<Playground/>}  />
-            <Route path="*" element={<NotFound/>}  />
+              <Route path="/login" element={<Login/>} />
+              <Route path="/playground" element={<Playground/>}  />
+
+
+              <Route path="*" element={<NotFound/>}  />
             </Routes>
           </Router>
         </SearchProvider>
