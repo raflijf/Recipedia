@@ -1,10 +1,9 @@
 import { useContext, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import clsx from 'clsx'
 
 import NavItem from '../components/navbar/NavItem'
 import PrimaryButton from '../components/button/PrimaryButton'
-import SecondryButton from '../components/button/SecondryButton'
 
 import { SearchContext } from '../context/SearchContext'
 
@@ -14,6 +13,8 @@ import profil from '../assets/billGates.jpeg'
 import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 export default function Navbar() {
+    const navigate = useNavigate()
+
     const [menuOpen, setMenuOpen] = useState(false)
     const handleMenu = (e) => {
         e.stopPropagation()
@@ -58,8 +59,7 @@ export default function Navbar() {
                             {/* <Link to={'/profile/1'}>
                                 <img src={profil} className='rounded-full w-12' alt="" />
                             </Link> */}
-                            <SecondryButton color='secondry' >Register</SecondryButton>
-                            <PrimaryButton color='secondry' >Login</PrimaryButton>
+                            <PrimaryButton color='secondry' onClick={() => navigate('/login')}>Log in</PrimaryButton>
                         </div> 
 
                         <div className='duration-300 lg:hidden flex gap-4 items-center'>
@@ -86,8 +86,7 @@ export default function Navbar() {
                                     <PrimaryButton >Buat Resep</PrimaryButton>
                                 </Link>
                                 <div className='flex gap-3'>
-                                    <SecondryButton color='secondry' >Register</SecondryButton>
-                                    <PrimaryButton color='secondry' >Login</PrimaryButton>
+                                    <PrimaryButton color='secondry' onClick={() => navigate('/login')} >Login</PrimaryButton>
                                 </div>
                             </div>
                         </div>
