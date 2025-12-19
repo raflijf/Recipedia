@@ -13,7 +13,7 @@ import Playground from "./pages/Playground"
 
 // account 
 import Profile from "./pages/account/Profile"
-import Login from "./pages/account/auth/login"
+import Login from "./pages/account/auth/Login"
 
 import { SearchProvider } from "./context/SearchContext"
 import { ToastProvider } from "./context/ToastProvider"
