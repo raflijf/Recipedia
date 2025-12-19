@@ -28,13 +28,12 @@ export default function FormInputCreateStep({idx,  value, name, handleInput, han
         <div className="flex items-start gap-2 " >
             <span className="bg-thirdty w-10 aspect-square flex items-center justify-center text-light rounded-full font-semibold">{idx}</span>
             <textarea 
-                name="" 
+                name={name} 
                 id=""
                 ref={textAreaRef}
                 value={value.includes('%plchdr%') ? '' : value}
                 onChange={handleInput}
                 placeholder={placeholder}
-                name={name}
                 className={clsx(
                     "bg-[#E6E6E6] text-thirdty w-full rounded-md focus:outline-none focus:ring-2 focus:ring-thirdty/40",
                     "placeholder:text-gray-500 resize-none overflow-hidden",
