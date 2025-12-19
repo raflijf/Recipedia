@@ -17,6 +17,9 @@ import Login from "./pages/account/auth/login"
 
 import { SearchProvider } from "./context/SearchContext"
 import { ToastProvider } from "./context/ToastProvider"
+import Onboarding from "./pages/onboarding/Onboarding"
+import Intro from "./pages/onboarding/Intro"
+import Name from "./pages/onboarding/Name"
 
 const queryClient = new QueryClient()
 
@@ -27,6 +30,7 @@ function App() {
         <SearchProvider>
           <Router>
             <Routes>
+              {/* Main */}
               <Route element={<MainLayout/>} >
                 <Route path="/" element={<Home/>} />
                 <Route path="/recipes" element={<Recipes/>} />
@@ -35,10 +39,17 @@ function App() {
                 <Route path="/recipe/create" element={<Create/>} />
                 <Route path="/profile/:uid" element={<Profile/>} />
               </Route>
+            
+              {/* Auth/account */}
               <Route path="/login" element={<Login/>} />
+
+              {/* Onboarding */}
+              <Route element={<Onboarding/>}>
+                  <Route path="/start/" element={<Name/>} />
+                  <Route path="/start/intro/" element={<Intro/>} />
+              </Route>
+
               <Route path="/playground" element={<Playground/>}  />
-
-
               <Route path="*" element={<NotFound/>}  />
             </Routes>
           </Router>

@@ -156,7 +156,7 @@ export default function Home() {
                             }
                         </>
                     }
-                    <PrimaryButton>Buat resep anda sendiri</PrimaryButton>                
+                    <PrimaryButton onClick={() => navigate('/recipe/create')}>Buat resep anda sendiri</PrimaryButton>                
                 </div>
                 <div  className="grid  place-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 gap-y-14 ">
                 {isLoading ? 

@@ -20,7 +20,6 @@ export default function Login() {
     const handleEmailForm = (e) => {
         e.preventDefault() 
         const value = e.target.email.value
-        console.log(validate.email(value))
         if (!validate.email(value)) return setFormStatus({status : 'error', message : 'Email tidak valid !'})
         setFormStatus({status : 'success', message : 'Kode verifikasi sudah dikirim ke Email anda!'})
         setSearchParams({verify : true})
@@ -60,12 +59,13 @@ export default function Login() {
                                     {searchParams.get('verify') === 'true' ? 
                                         <>
                                             <p className="text-sm font-light text-thirdty/80">Periksa Email anda dan masukkan kode yang diberikan</p>
-                                            <div className="space-y-1">
+                                            <div className="space-y-2.5">
                                                 <FormInput 
                                                     size="md"  
                                                     placeholder="Masukkan Kode" 
                                                     autocomplete="off"  
                                                     type="number"
+                                                    name="otpCode"
                                                     inputMode="numeric"
                                                     className="
                                                         [appearance:textfield]
@@ -73,24 +73,31 @@ export default function Login() {
                                                         [&::-webkit-outer-spin-button]:appearance-none
                                                     " 
                                                 />
-                                                <button className="text-sm cursor-pointer w-fit ml-1 text-gray-700 hover:text-gray-900">Kirim ulang ? </button>
+                                                <div className="flex justify-between items-center">
+                                                    <button className="text-sm cursor-pointer w-fit ml-1 text-gray-700 hover:text-gray-900">Kirim ulang ? </button>
+                                                    <PrimaryButton type="submit" name="verification" size="medium" >Lanjutkan</PrimaryButton>
+                                                </div>
                                             </div>
 
 
                                         </>                                
                                         :
-                                        <>
-                                            <FormInput
-                                                size="md"
-                                                placeholder="Email"
-                                                name="email"
-                                                autocomplete="off"
-                                            />
-                                            {formStatus?.status === 'error' && 
-                                                <p className="text-sm text-red-500">{formStatus?.message}</p>
-                                            }
-                                            <PrimaryButton type="submit" size="medium" >Lanjutkan</PrimaryButton>
-                                        </>
+                                        <div className="space-y-2.5"> 
+                                            <div>
+                                                <FormInput
+                                                    size="md"
+                                                    placeholder="Email"
+                                                    name="email"
+                                                    autocomplete="off"
+                                                />
+                                                {formStatus?.status === 'error' && 
+                                                    <p className="text-xs text-red-500">{formStatus?.message}</p>
+                                                }
+                                            </div>
+                                            <div className="flex justify-end">
+                                                <PrimaryButton type="submit" name="sentEmail" size="medium" >Lanjutkan</PrimaryButton>
+                                            </div>
+                                        </div>
                                     }
                                 </div>
                             </form>
