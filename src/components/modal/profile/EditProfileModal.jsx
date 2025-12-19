@@ -12,7 +12,7 @@ import FormUrl from "../../forms/input/FormInputUrl";
 import PrimaryButton from "../../button/PrimaryButton";
 import BaseModal from "../BaseModal";
 
-import billgates from "../../../assets/billgates.jpeg";
+import billgates from "../../../assets/billGates.jpeg";
 
 export default function EditProfileModal() {
     const [searchParams, setSearchParams] = useSearchParams()
